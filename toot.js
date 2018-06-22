@@ -43,7 +43,7 @@ function ajax(obj) {
     }
   }
 }
-function getRouteQuery () {
+function getRouteQuery (key) {
   var searchStr = window.location.search.slice(1)
   var searchArr = searchStr.split('&')
   var query = {}
@@ -51,5 +51,5 @@ function getRouteQuery () {
     var item = searchArr[i].split('=')
     query[item[0]] = item[1]
   }
-  return query
+  return query.key
 }
