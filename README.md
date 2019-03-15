@@ -28,6 +28,15 @@ function loadJs(src, callback) {
 }
 ```
 
+判断是否是空对象{}
+```js
+function isEmptyObject(obj) {
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj))
+        return false;
+    return !Object.keys(obj).length;
+}
+```
+
 复制: 因为exeCommand()可以操作系统剪切板，有可能被恶意利用。所以你不能用JS“直接”调用execCommand('copy')，而需要放到某一个有用户出发的事件响应函数内，(用户触发的事件和 document.execCommand('copy'); 之间不能被异步过程隔开)
 ```js
 function copy (copyContent, callBack) {
