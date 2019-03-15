@@ -28,7 +28,22 @@ const isOnline = (() => {
 
 export default { isIos, isAndroid, isWechat, isOnline }
 ```
-复制
+
+异步加载js
+```js
+function loadJs(src, callback) {
+  const script = document.createElement('script')
+  script.src = src
+  script.onload = function() {
+    // 加载完成后执行
+   callback()
+  }
+  script.language = 'JavaScript'
+  document.body.appendChild(script)
+}
+```
+
+复制: 因为exeCommand()可以操作系统剪切板，有可能被恶意利用。所以你不能用JS“直接”调用execCommand('copy')，而需要放到某一个有用户出发的事件响应函数内，(用户触发的事件和 document.execCommand('copy'); 之间不能被异步过程隔开)
 ```js
 function copy (copyContent, callBack) {
     // execCommand复制必须操纵可编辑区域的内容 就是输入框
@@ -46,6 +61,7 @@ function copy (copyContent, callBack) {
     document.body.removeChild(input)
   }
  ```
+ 
 获取路由参数
 ```js
 function getRouteQuery (key) {
@@ -59,16 +75,4 @@ function getRouteQuery (key) {
   return query.key
 }
 ```
-异步加载js
-```js
-function loadJs(src, callback) {
-  const script = document.createElement('script')
-  script.src = src
-  script.onload = function() {
-    // 加载完成后执行
-   callback()
-  }
-  script.language = 'JavaScript'
-  document.body.appendChild(script)
-}
-```
+
