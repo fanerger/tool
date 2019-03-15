@@ -30,7 +30,7 @@ export default { isIos, isAndroid, isWechat, isOnline }
 ```
 复制
 ```js
-copy (copyContent, callBack) {
+function copy (copyContent, callBack) {
     // execCommand复制必须操纵可编辑区域的内容 就是输入框
     const input = document.createElement('input')
     input.setAttribute('readonly', 'readonly')
@@ -46,3 +46,16 @@ copy (copyContent, callBack) {
     document.body.removeChild(input)
   }
  ```
+获取路由参数
+```js
+function getRouteQuery (key) {
+  var searchStr = window.location.search.slice(1)
+  var searchArr = searchStr.split('&')
+  var query = {}
+  for (var i = 0; i < searchArr.length; i++) {
+    var item = searchArr[i].split('=')
+    query[item[0]] = item[1]
+  }
+  return query.key
+}
+```
