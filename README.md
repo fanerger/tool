@@ -59,3 +59,16 @@ function getRouteQuery (key) {
   return query.key
 }
 ```
+异步加载js
+```js
+function loadJs(src, callback) {
+  const script = document.createElement('script')
+  script.src = src
+  script.onload = function() {
+    // 加载完成后执行
+   callback()
+  }
+  script.language = 'JavaScript'
+  document.body.appendChild(script)
+}
+```
