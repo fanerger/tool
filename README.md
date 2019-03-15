@@ -62,6 +62,20 @@ function copy (copyContent, callBack) {
   }
  ```
  
+ 一键置顶
+ ```js
+var btn = document.getElementById('btn');
+btn.onclick = function () {
+  var h = document.documentElement.scrollTop
+  timer = setInterval(function () {
+    document.documentElement.scrollTop -= h / 8;
+    if (document.documentElement.scrollTop <= 0) {
+      clearInterval(timer)
+    }
+  }, 20)
+}
+```
+
 获取路由参数
 ```js
 function getRouteQuery (key) {
