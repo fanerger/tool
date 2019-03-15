@@ -2,31 +2,16 @@
 
 系统环境
 ```js
-// 是否是苹果手机
-const isIos = (() => {
-  let u = navigator.userAgent
-  let ios = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
-  return ios
+const system = (function () {
+  const u = navigator.userAgent
+  const ua = navigator.userAgent.toLowerCase()
+  return {
+    isIos: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+    isAndroid: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+    isWechat: ua.indexOf('micromessenger') !== -1,
+    isOnline: window.location.href.indexOf(192.168) < 0 // 视情况改下
+  }
 })()
-// 是否是安卓手机
-const isAndroid = (() => {
-  let u = navigator.userAgent
-  let android = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1
-  return android
-})()
-// 是否是微信浏览器
-const isWechat = (() => {
-  let ua = navigator.userAgent.toLowerCase()
-  let isWeixin = ua.indexOf('micromessenger') !== -1
-  return isWeixin
-})()
-// 是否是线上环境
-const isOnline = (() => {
-  let flag = window.location.href.indexOf(192.168) < 0
-  return flag
-})()
-
-export default { isIos, isAndroid, isWechat, isOnline }
 ```
 
 异步加载js
